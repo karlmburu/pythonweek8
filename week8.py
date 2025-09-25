@@ -5,7 +5,7 @@ import streamlit as st
 # Load dataset
 
 url = "https://drive.google.com/uc?id=1nism0Up8FAiO8ALBv4t-tPJ6h8yUcoIK"
-df = pd.read_csv("url")
+df = pd.read_csv(url, on_bad_lines='skip')
 
 # Ensure consistent data types
 for col in df.columns:
