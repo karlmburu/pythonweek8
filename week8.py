@@ -102,16 +102,16 @@ def main():
 
     # --- Visualizations ---
     st.header("Papers Published Per Year")
-    papers_per_year(filtered_df)
+    papers_per_year(cleaned_df)
 
     st.header("Top Journals by Number of Publications")
-    plot_top_journals(filtered_df, top_n=10)
+    plot_top_journals(cleaned_df, top_n=10)
 
     st.header("Publications by Country")
-    plot_publications_by_country(filtered_df)
+    plot_publications_by_country(cleaned_df)
 
     st.header("Publications by Year")
-    plot_publications_by_year(filtered_df)
+    plot_publications_by_year(cleaned_df)
 
 
     
