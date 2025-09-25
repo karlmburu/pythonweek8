@@ -100,32 +100,7 @@ def main():
     # Clean dataset
     cleaned_df = clean_data(df)
 
-    # --- Sidebar Filters ---
-    st.sidebar.header("🔎 Filters")
-
-    # Filter by Year
-    st.write("Columns in cleaned_df:", cleaned_df.columns.tolist())
-
-    cleaned_df['publish_time'] = pd.to_datetime(cleaned_df['publish_time'], errors='coerce').dt.year
-    available_years = sorted(cleaned_df['publish_time'].dropna().unique())
-    selected_years = st.sidebar.multiselect("Select Year(s)", available_years, default=available_years)
-
-    # Filter by Country
-    available_countries = sorted(cleaned_df['country'].dropna().unique())
-    selected_countries = st.sidebar.multiselect("Select Country/Countries", available_countries, default=available_countries)
-
-    # Apply Filters
-    filtered_df = cleaned_df[
-        (cleaned_df['year'].isin(selected_years)) &
-        (cleaned_df['country'].isin(selected_countries))
-    ]
-
-    # --- Show Data Preview ---
-    st.subheader("Preview of Filtered Data")
-    st.dataframe(filtered_df.head())
-
     # --- Visualizations ---
-    if not filtered_df.empty:
         st.header("Papers Published Per Year")
         papers_per_year(filtered_df)
 
@@ -137,7 +112,6 @@ def main():
 
         st.header("Publications by Year")
         plot_publications_by_year(filtered_df)
-    else:
         st.warning("⚠️ No data available for the selected filters.")
 
 
