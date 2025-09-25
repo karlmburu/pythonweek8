@@ -37,8 +37,8 @@ def clean_data(df):
 
 # ---------------- VISUALIZATIONS ---------------- #
 def papers_per_year(df):
-    df['year'] = pd.to_datetime(df['year'], errors='coerce').dt.year
-    papers_per_year = df['year'].value_counts().sort_index()
+    df['year'] = pd.to_datetime(df['publish_time'], errors='coerce').dt.year
+    papers_per_year = df['publish_time'].value_counts().sort_index()
 
     plt.figure(figsize=(10, 5))
     plt.plot(papers_per_year.index, papers_per_year.values, marker='o')
@@ -62,8 +62,8 @@ def plot_publications_by_country(df):
 
 
 def plot_publications_by_year(df):
-    df['year'] = pd.to_datetime(df['year'], errors='coerce').dt.year
-    year_counts = df['year'].value_counts().sort_index()
+    df['year'] = pd.to_datetime(df['publish_time'], errors='coerce').dt.year
+    year_counts = df['publish_time'].value_counts().sort_index()
 
     plt.figure(figsize=(10, 5))
     year_counts.plot(kind='line', marker='o')
@@ -96,8 +96,8 @@ def main():
     st.sidebar.header("🔎 Filters")
 
     # Filter by Year
-    cleaned_df['year'] = pd.to_datetime(cleaned_df['year'], errors='coerce').dt.year
-    available_years = sorted(cleaned_df['year'].dropna().unique())
+    cleaned_df['year'] = pd.to_datetime(cleaned_df['publish_time'], errors='coerce').dt.year
+    available_years = sorted(cleaned_df['publish_time'].dropna().unique())
     selected_years = st.sidebar.multiselect("Select Year(s)", available_years, default=available_years)
 
     # Filter by Country
