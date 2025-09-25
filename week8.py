@@ -23,16 +23,24 @@ for col in df.columns:
 
 
 def clean_data(df):
+    # Drop duplicates
     df = df.drop_duplicates()
-    df = df.fillna(method='ffill').fillna(method='bfill')
 
-    numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
-    for col in numeric_cols:
-        mean = df[col].mean()
-        std = df[col].std()
-        df = df[(df[col] >= mean - 3 * std) & (df[col] <= mean + 3 * std)]
+    # Handle missing values
+    if 'title' in df.columns:
+        df = df.dropna(subset=['title'])  # Drop rows where title is missing
+
+    if 'publish_time' in df.columns and pd.api.types.is_numeric_dtype(df['publish_time']):
+        df['publish_time'] = df['publish_time'].fillna(df['publish_time'].median())  # Fill missing years with median year
+
+    # Standardize text data
+    if 'title' in df.columns and df['title'].dtype == object:
+        df['title'] = df['title'].str.title()
+    if 'authors' in df.columns and df['authors'].dtype == object:
+        df['authors'] = df['authors'].str.title()
 
     return df
+
 
 
 # ---------------- VISUALIZATIONS ---------------- #
