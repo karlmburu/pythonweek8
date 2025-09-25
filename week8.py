@@ -96,6 +96,8 @@ def main():
     st.sidebar.header("🔎 Filters")
 
     # Filter by Year
+    st.write("Columns in cleaned_df:", cleaned_df.columns.tolist())
+
     cleaned_df['year'] = pd.to_datetime(cleaned_df['publish_time'], errors='coerce').dt.year
     available_years = sorted(cleaned_df['publish_time'].dropna().unique())
     selected_years = st.sidebar.multiselect("Select Year(s)", available_years, default=available_years)
