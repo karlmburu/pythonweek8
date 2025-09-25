@@ -101,19 +101,19 @@ def main():
     cleaned_df = clean_data(df)
 
     # --- Visualizations ---
-        st.header("Papers Published Per Year")
-        papers_per_year(filtered_df)
+    st.header("Papers Published Per Year")
+    papers_per_year(filtered_df)
 
-        st.header("Top Journals by Number of Publications")
-        plot_top_journals(filtered_df, top_n=10)
+    st.header("Top Journals by Number of Publications")
+    plot_top_journals(filtered_df, top_n=10)
 
-        st.header("Publications by Country")
-        plot_publications_by_country(filtered_df)
+    st.header("Publications by Country")
+    plot_publications_by_country(filtered_df)
 
-        st.header("Publications by Year")
-        plot_publications_by_year(filtered_df)
-        st.warning("⚠️ No data available for the selected filters.")
+    st.header("Publications by Year")
+    plot_publications_by_year(filtered_df)
 
 
+    
 if __name__ == "__main__":
     main()
