@@ -54,6 +54,7 @@ def papers_per_year(df):
     plt.xlabel('Year')
     plt.ylabel('Number of Papers')
     plt.grid(True)
+    plt.show()
     st.pyplot(plt)
 
 
