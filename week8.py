@@ -20,6 +20,8 @@ for col in df.columns:
 
 
 # ---------------- DATA CLEANING ---------------- #
+st.write("Available columns:", cleaned_df.columns.tolist())
+
 def clean_data(df):
     df = df.drop_duplicates()
     df = df.fillna(method='ffill').fillna(method='bfill')
